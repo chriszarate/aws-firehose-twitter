@@ -4,7 +4,8 @@
   "author": "AssafMentzer",
   "private": true,
   "scripts": {
-    "start": "node app"
+    "start": "node app",
+    "setup-role": "aws iam create-role --role-name iam-role-firehose-delivery --assume-role-policy-document file://firehose-policy.json && aws iam put-role-policy --role-name iam-role-firehose-delivery --policy-name firehose-s3-rw --policy-document file://s3-rw-policy.json"
   },
   "dependencies": {
     "aws-sdk": "2.x",
