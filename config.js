@@ -40,7 +40,9 @@ var config = module.exports = {
       access_token: process.env.TWITTER_ACCESS_TOKEN,
       access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
  },
- locations: ['-127.33,23.34,-55.52,49.56'], //US   (All the world:'-180,-90,180,90; New York City:-74,40,-73,41; San Francisco:-122.75,36.8,-121.75,37.8, US:-127.33,23.34,-55.52,49.56)
+ filter: {
+   follow: process.env.TWITTER_STREAMING_API_FOLLOW
+ },
  waitBetweenDescribeCallsInSeconds: 2,
  recordsToWritePerBatch: 100,
  waitBetweenPutRecordsCallsInMilliseconds: 50,
