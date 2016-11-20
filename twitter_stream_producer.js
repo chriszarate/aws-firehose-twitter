@@ -62,7 +62,7 @@ function twitterStreamProducer(firehose) {
       _waitForStreamToBecomeActive(callback);
     });
 
-    
+
   }
 
   // Checks current status of the stream.
@@ -87,29 +87,24 @@ function twitterStreamProducer(firehose) {
 
 
   function _sendToFirehose() {
-    var stream = T.stream('statuses/filter', { follow: config.filter.follow });
+    var stream = T.stream('statuses/filter', config.filter);
 
     var records = [];
     var record = {};
     var recordParams = {};
     stream.on('tweet', function (tweet) {
-       if (tweet.coordinates){
-            if (tweet.coordinates !== null){
-              console.log(JSON.stringify(tweet));
-              recordParams = {
-                  DeliveryStreamName: config.firehose.DeliveryStreamName,
-                  Record: {
-                    Data: JSON.stringify(tweet)+',\n'
-                  }
-              };
-              firehose.putRecord(recordParams, function(err, data) {
-                if (err) {
-                  log.error(err);
-                }
-              });
-             
+      console.log(JSON.stringify(tweet));
+      recordParams = {
+          DeliveryStreamName: config.firehose.DeliveryStreamName,
+          Record: {
+            Data: JSON.stringify(tweet)+',\n'
           }
+      };
+      firehose.putRecord(recordParams, function(err, data) {
+        if (err) {
+          log.error(err);
         }
+      });
     });
   }
 

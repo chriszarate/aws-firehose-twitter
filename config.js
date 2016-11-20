@@ -41,7 +41,8 @@ var config = module.exports = {
       access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
  },
  filter: {
-   follow: process.env.TWITTER_STREAMING_API_FOLLOW
+   follow: process.env.TWITTER_STREAMING_API_FOLLOW,
+   replies: 'all'
  },
  waitBetweenDescribeCallsInSeconds: 2,
  recordsToWritePerBatch: 100,
